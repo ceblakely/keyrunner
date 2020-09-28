@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <link rel='stylesheet' href='styles.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        <h1><a href=''>Key Runner</a></h1>
+        <section id='headerText'>
+            <h2>Take our 1 minute typing test to see how fast you can go! We'll calculate your Words per Minute (WPM) and Characters per Minute (CPM). Select a level and start the game!</h2>
+        </section>
+        
+        
+
+        
+        <section id='playArea'>
+            <section id='introBox'>
+                <h4 id='timer' class='hide'>1:00 minute left</h4>
+                <section id='sentenceText'>
+                    <p id='gameString' class='stringStyles'></p>
+                </section>
+                <section id='introContent'>
+                    <p>How the Game Works:</p>
+                    <ul>
+                        <li>Select level you'd like to play at.</li>
+                        <li>When you press Start Game, the countdown clock starts (top right corner). You have one minute to accurately type as many words as you can.</li>
+                        <li>When a letter is green, you typed that letter correctly.</li>
+                        <li>When a letter is red, you typed the wrong letter. Press the Backspace key and try again. You won't be allowed to move on to the next sentence until you correct the mistake.</li>
+                    </ul>
+                </section>
+
+                    <section id='levelButtons' class='hide'>
+                        <h3>Select Your Level: </h3>
+                        <button id='begBtn'>Beginner</button>
+                        <button id='intBtn'>Intermediate</button>
+                        <button id='advBtn'>Advanced</button>
+                    </section>
+
+                    <button id='nextBtn'>Next</button>
+                    <button id='startBtn' class = 'hide'>Start Game</button>
+                    <input id='inputBtn' placeholder='Type here to start timer' class='hide'>
+                </section>
+                </section>
+            </section>
+     
+<!--
+<section id='faq'>
+            <h2>FAQ</h2>
+            <p>How Words per Minute (WPM) is calculated: </p>
+            <p>Sed sollicitudin sapien non diam vestibulum ultrices. Phasellus a dapibus nibh, nec luctus quam. Sed nec nisl eget sem venenatis euismod. Vestibulum nec gravida dui, vestibulum hendrerit est.</p>
+        </section>
+-->
+        
+ 
+
+    
+    <footer>
+        <h1><a href=''>Key Runner</a></h1>
+    </footer>
+    <script src='index.js'></script>
+    <script src='string_gen.js'></script>
+</body>
+</html>
