@@ -1,128 +1,110 @@
-// Define elements
-const levelButtons = document.getElementById('levelButtons'); // parent div
-const begBtn = document.getElementById('begBtn');
-const intBtn = document.getElementById('intBtn');
-const advBtn = document.getElementById('advBtn');
-const btnsObj = [begBtn, intBtn, advBtn];
-const nextBtn = document.getElementById('nextBtn');
-const startBtn = document.getElementById('startBtn');
-const inputBtn = document.getElementById('inputBtn');
-
-let level;
-let gameString = document.getElementById('gameString');
-let levelString; // Is the string chosen based on level chosen
-let valueObj; // Will come from levelString.split('') later
+let textHere = document.getElementById('textHere');
+let usedSentences = []; // has sentences used previously
 let currentIndex = 0;
-let currentLetter;
-//let currentWord;
 
-// Define Events
+// for comparison purposes
+let gameString;
+let newStringArr = [];
+let valArr; 
+let lenArr = [];
+let lastKeys = [];
+let currentRound = 1;
 
-document.addEventListener('keyup', logKeys);
-nextBtn.addEventListener('click', showLevels);
-startBtn.addEventListener('click', clickStart);
 
-btnsObj.forEach((btn) => {
-    btn.addEventListener('click', chosenLevel);
+document.addEventListener('keyup', (e) => {
+    getKey(e);
 });
 
-// Level Values
 
-const begLevel = 'My name is Junie B. Jones. The B stands for Beatrice. Mary had a little lamb. The young girl hurried from the house. They are making for the forest. Everybody knows we hate Tom. Tom held his cup out for Mary to refill it. Take care to not miss the train. WE will not allow you to bring your pet cat along. Let me help you with your baggage. A dead duck doesn\'t fly backward. He strives to keep the best lawn in the neighborhood';
+const sentences = [
+    "Mary had a little lamb"
+    /*
+    "Nice to meet you. Where you been? I could show you incredible things. Magic, madness, heaven, sin. Saw you there and I thought oh my god. Look at that face, you look like my next mistake. Love\'s a game, wanna play?",
+    "Gotta keep my head held high. There's always gonna be another mountain. I'm always gonna wanna make it move. Always gonna be an uphill battle. Sometimes I'm gonna have to lose. Ain't about how fast I get there. Ain't about what's waiting on the other side. It's the climb.",
+    "A thousand miles seems pretty far. But they've got planes and trains and cars. I'd walk to you if I had no other way. Our friends would all make fun of us. And we'll just laugh along because we know. That none of them have felt this way. Delilah, I can promise you. That by the time we get through. The world will never ever be the same. And you're to blame",
+    "Backbeat, the word is on the street. That the fire in your heart is out. I'm sure you've heard it all before. But you never really had a doubt. I don't believe that anybody. Feels the way I do about you now. And all the roads we have to walk are winding. And all the lights that lead us there are blinding. There are many things that I would like to say to you but I don't know how",
+    "Well, the plane landed and when I came out. There was a dude who looked like a cop standing there with my name out. I ain't trying to get arrested yet I just got here. I sprang with the quickness like lightning, disappeared. I whistled for a cab and when it came near The license plate said fresh and it had dice in the mirror, If anything I could say that this cab was rare. But I thought 'Nah, forget it' - 'Yo, home to Bel Air'"
+    */
+];
 
-const intLevel = 'Python\'s name is derived from the British comedy group Monty Python. Python is an interpreted, high-level, general-purpose programming language. Python is used extensively in the information security industry, including in exploit development. Swift, a programming language developed by Apple, has some Python-inspired syntax. JavaScript supports event-driven, functional, and imperative programming styles. JavaScript engines were originally used only in web browsers, but they are now embedded in some servers. A common misconception is that JavaScript is similar or closely related to Java. The murder hornet was disappointed by the preconceived ideas people had of him. I purchased a baby clown from the Russian terrorist black market. During the period of Internet Explorer dominance in the early 2000s, client-side scripting was stagnant. The Angular framework was created by Google for its web services; it is now open source and used by other websites.';
 
-const advLevel = 'After winning re-election by defeating Republican opponent Mitt Romney, Obama was sworn in for a second term in 2013. During this term, he promoted inclusion for LGBT Americans. Disney Channel\'s programming consists of original first-run television series, theatrically released and original made-for-TV movies and select other third-party programming. A developed country, New Zealand ranks highly in international comparisons of national performance, such as quality of life, education, protection of civil liberties, government transparency, and economic freedom. During her grandfather\'s reign, Elizabeth was third in the line of succession to the British throne, behind her uncle Edward and her father. The west of Scotland is usually warmer than the east, owing to the influence of Atlantic ocean currents and the colder surface temperatures of the North Sea. A highly developed country, the United States is the world\'s largest economy and accounts for approximately a quarter of global gross domestic product. Python uses dynamic typing and a combination of reference counting and a cycle-detecting garbage collector for memory management. The broad consensus among economists is that Brexit will likely harm the UK\'s economy and reduce its real per capita income in the long term, and that the referendum itself damaged the economy. Brexit is likely to reduce immigration from European Economic Area countries to the UK, and poses challenges for UK higher education, academic research and security. UK membership of EU ended on 31 January 2020, beginning a period of transitional arrangements set to end on 31 December 2020. Opinion polling overall showed an initial fall in support for Brexit from the referendum to late 2016, when responses were split evenly between support and opposition.';
-
-
-
-function showLevels() {
-    document.getElementById('introContent').setAttribute('class', 'hide');
-    nextBtn.setAttribute('class', 'hide');
-    levelButtons.setAttribute('class', 'btnStyle');
-
-    levelButtons.removeAttribute('class', 'hide');
-    startBtn.removeAttribute('class', 'hide');
+function getSentence(randomIndex) {
+    let randomSen = sentences[randomIndex];
+    usedSentences.push(sentences.splice(randomIndex, randomIndex + 1));
     
+    return randomSen;
 }
-function chosenLevel() {
-    startBtn.removeAttribute('class', 'hide');
-    level = this.innerText;
-    switch(level) {
-        case 'Beginner':
-            levelString = begLevel;
-            break;
-        case 'Intermediate':
-            levelString = intLevel;
-            break;
-        case 'Advanced':
-            levelString = advLevel;
-    }
-}
-
-function clickStart() {
-    const timer = document.getElementById('timer');
-
-    levelButtons.setAttribute('class', 'hide');
-    startBtn.setAttribute('class', 'hide');
-    timer.removeAttribute('class', 'hide');
-    inputBtn.removeAttribute('class', 'hide');
-    
-    gameString.innerHTML = levelString;
-    valueObj = levelString.split(''); // each letter in array to compare
-    currentLetter = valueObj[currentIndex]; // each letter at currentIndex
-}
-
-
-function logKeys(e) {
+function getKey(e) {
     let keyPressed = `${e.key}`;
-    const keysToIgnore = ['Shift', 'Enter', 'Tab', 'Shift', 'CapsLock', 'Control', 'Alt', 'Meta', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight', '`'];
-
+    const keysToIgnore = [
+      "Shift",
+      "Enter",
+      "Tab",
+      "CapsLock",
+      "Control",
+      "Alt",
+      "Meta",
+      "ArrowLeft",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowRight",
+      "`"
+    ];
     if (keysToIgnore.includes(keyPressed)) {
-        // does nothing here.
-    }
-    else {
-        checkLetter(keyPressed);
+        console.log('Ignore key');
+    } else if (keyPressed == 'Backspace') {
+        backspaceKey();
+    } else if (newStringArr.length == gameString.length) {
+        console.log('Sentence Complete');
+    } else {
+        colorText(keyPressed);
     }
 }
 
-function checkLetter(keyPressed) {  
-    
-    if (keyPressed == currentLetter) {
-        console.log('good');
-        currentIndex++;       
-        currentLetter = valueObj[currentIndex];
-        return '<span class="green">' + valueObj[currentIndex - 1] + '</span';
-    }
-    else if (keyPressed != currentLetter) {
-        console.log('try again');
-        return '<span class="red">' + currentLetter + '</span';
-    }
-    
-    valueArr = valueArr.join();
-    gameString.innerHTML = valueArr;
+function colorText(key) {
+    let currentLetter = valArr.shift();
+    lastKeys.push(currentLetter);
+    let isCorrect =
+        key == currentLetter ? '<span style="color: green">' + currentLetter + "</span>" : '<span style="color: red">' + currentLetter + "</span>";
+
+    currentIndex++;
+    lenArr.push(isCorrect.length);
+    newStringArr.push(isCorrect);
+    insertNew(valArr);
+}
+
+function backspaceKey() {
+    currentIndex--;
+    let lastLetter = newStringArr.pop();
+    lastLetter = lastLetter.replace(/<\/?span[^>]*>/g, "");
+    console.log(lastLetter);
+    valArr.unshift(lastLetter);
+    insertNew(valArr);
+}
+  
+function insertNew(valArr) {
+    document.getElementById("textHere").innerHTML = newStringArr.join("") + valArr.join("");
+}
+
+function hideElements(arr) {
+    arr.forEach((elem) => {
+        elem.setAttribute('class', 'hide');
+    });
+}
+function showElements(arr) {
+    arr.forEach((elem) => {
+        elem.removeAttribute('class', 'hide');
+    });
 }
 
 
+document.getElementById('startBtn').addEventListener('click', () => {
+    gameString = getSentence(Math.floor(Math.random() * sentences.length)); // used for comparison
+    textHere.innerHTML = gameString;
+    valArr = gameString.split('');
 
+    showElements([document.getElementById('inputField')]);
+    hideElements([document.getElementById('startGameDiv')]);
+});
 
-
-
-
-
-
-
-
-/*
-function startCount() {
-    timer = document.getElementById('timer');
-    let min = 0;
-    let sec = 59;
-    setInterval(() => {
-        timer.innerHTML = min + ':' + sec + ' seconds';
-        sec--;
-    }, 1000);
-    if (sec <= 10) {
-        timer.style.backgroundColor = 'red';
-    }
-} */
+console.log('idk');
