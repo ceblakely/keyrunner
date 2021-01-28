@@ -107,3 +107,4 @@ document.getElementById('startBtn').addEventListener('click', () => {
     hideElements([document.getElementById('startGameDiv')]);
 });
 
+console.log('idk');
