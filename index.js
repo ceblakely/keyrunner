@@ -1,15 +1,14 @@
-let textHere = document.getElementById('textHere');
+//let textHere = document.getElementById('textHere');
 let usedSentences = []; // has sentences used previously
 let currentIndex = 0;
-
-// for comparison purposes
-let gameString;
-let newStringArr = [];
-let valArr; 
-let lenArr = [];
-let lastKeys = [];
 let currentRound = 1;
 
+
+let userInfo = {
+    1: {},
+    2: {},
+    3: {},
+};
 
 document.addEventListener('keyup', (e) => {
     getKey(e);
@@ -17,7 +16,9 @@ document.addEventListener('keyup', (e) => {
 
 
 const sentences = [
-    "Mary had a little lamb"
+    "Mary had a little lamb",
+    "Christina Blakely",
+    "I like bananas"
     /*
     "Nice to meet you. Where you been? I could show you incredible things. Magic, madness, heaven, sin. Saw you there and I thought oh my god. Look at that face, you look like my next mistake. Love\'s a game, wanna play?",
     "Gotta keep my head held high. There's always gonna be another mountain. I'm always gonna wanna make it move. Always gonna be an uphill battle. Sometimes I'm gonna have to lose. Ain't about how fast I get there. Ain't about what's waiting on the other side. It's the climb.",
@@ -54,36 +55,66 @@ function getKey(e) {
         console.log('Ignore key');
     } else if (keyPressed == 'Backspace') {
         backspaceKey();
-    } else if (newStringArr.length == gameString.length) {
-        console.log('Sentence Complete');
+    } else if (e.keyCode == 32) {
+        colorText(e.keyCode);
+        //console.log('space');
     } else {
         colorText(keyPressed);
     }
 }
 
 function colorText(key) {
-    let currentLetter = valArr.shift();
-    lastKeys.push(currentLetter);
-    let isCorrect =
-        key == currentLetter ? '<span style="color: green">' + currentLetter + "</span>" : '<span style="color: red">' + currentLetter + "</span>";
+    let currentLetter = userInfo[currentRound].valArr.shift();
+    if (key == 32) {
+        userInfo[currentRound].lastWords.push(document.getElementById('inputField').value);
+        userInfo[currentRound].lastKeys.push(' ');
+        userInfo[currentRound].newStringArr.push(' ');
+        document.getElementById('inputField').value = '';
+    } else {
+        let coloredLetter = isCorrect(key, currentLetter);
 
+        userInfo[currentRound].lastKeys.push(key); 
+        userInfo[currentRound].lenArr.push(coloredLetter.length);
+        userInfo[currentRound].newStringArr.push(coloredLetter);
+    }
     currentIndex++;
-    lenArr.push(isCorrect.length);
-    newStringArr.push(isCorrect);
-    insertNew(valArr);
+    insertNew(userInfo[currentRound].valArr);
 }
+
+function isCorrect(key, currentLetter) {
+    if (key == currentLetter) {
+        return '<span style="color: green">' + currentLetter + '</span>';
+    } else {
+        return'<span style="color: red">' + currentLetter + '</span>';
+    }
+}
+
 
 function backspaceKey() {
     currentIndex--;
-    let lastLetter = newStringArr.pop();
+
+    let lastLetter = userInfo[currentRound].newStringArr.pop();
+    userInfo[currentRound].lastKeys.pop();
     lastLetter = lastLetter.replace(/<\/?span[^>]*>/g, "");
-    console.log(lastLetter);
-    valArr.unshift(lastLetter);
-    insertNew(valArr);
+    userInfo[currentRound].valArr.unshift(lastLetter);
+    //console.log(lastLetter);
+
+
+    
+    insertNew(userInfo[currentRound].valArr);
 }
   
 function insertNew(valArr) {
-    document.getElementById("textHere").innerHTML = newStringArr.join("") + valArr.join("");
+    document.getElementById("mainP").innerHTML = userInfo[currentRound].newStringArr.join("") + valArr.join("");
+    
+    if (userInfo[currentRound].lastKeys.join('') == userInfo[currentRound].gameString) {
+        console.log('cool');
+        currentRound++;
+        //document.getElementById('modalPopup').innerText = 'Well done! To Round 2...';
+        hideElements([document.getElementById('inputField')]);
+        showElements([document.getElementById('modalPopup')]);
+        
+    }
 }
 
 function hideElements(arr) {
@@ -99,12 +130,14 @@ function showElements(arr) {
 
 
 document.getElementById('startBtn').addEventListener('click', () => {
-    gameString = getSentence(Math.floor(Math.random() * sentences.length)); // used for comparison
-    textHere.innerHTML = gameString;
-    valArr = gameString.split('');
+    userInfo[currentRound].gameString = getSentence(Math.floor(Math.random() * sentences.length));
+    document.getElementById('mainP').innerHTML = userInfo[currentRound].gameString;
+    userInfo[currentRound].valArr = userInfo[currentRound].gameString.split('');
+    userInfo[currentRound].newStringArr = [];
+    userInfo[currentRound].lenArr = [];
+    userInfo[currentRound].lastKeys = [];
+    userInfo[currentRound].lastWords = [];
 
     showElements([document.getElementById('inputField')]);
-    hideElements([document.getElementById('startGameDiv')]);
+    hideElements([document.getElementById('startBtn')]);
 });
-
-console.log('idk');

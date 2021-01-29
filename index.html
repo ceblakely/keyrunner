@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <head>
     <link rel='stylesheet' href='styles.css'>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@1,700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <nav>
-        <h1><a href=''>Key Runner</a></h1>
-        <h3>The Ultimate Typing Test</h3>
-    </nav>
-
-    <div id='box'>
-        <div id='startGameDiv'>
-            <button id='startBtn'>Start Game</button>
-            <button>Play with Others</button>
+    <div id='introDiv'>
+        <div id='title'>
+            <h1><a href=''>How Fast Are You?</a></h1>
+            <h2>The Ultimate Typing Test</h2>
         </div>
+        
+        <div id='mainBox'>
+            <p id='mainP'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non lacus congue, porta est eu, ullamcorper ipsum. Nam a suscipit magna. Sed tempus quam ex, elementum bibendum odio mollis ut. Curabitur ullamcorper interdum erat in convallis. Donec vel pellentesque libero. In molestie sollicitudin tellus, vel varius dolor elementum eu. Ut sodales purus sapien, a imperdiet justo tristique ut. Fusce condimentum porta feugiat. In malesuada nunc et bibendum gravida. Suspendisse auctor orci lacinia ipsum varius, in pharetra eros euismod. Vivamus sollicitudin dui et diam porttitor, non vestibulum arcu tempus. Duis at.</p>
+            <input id='inputField' class='hide' autocomplete='off'>
+            <button id='startBtn'>Start Round 1</button>
+        </div>  
 
-        <div id='testBox'>
-            <p id='textHere'></p>
+ 
+                   
+    </div>
+    <div id='bottomHalf'>
+        <div id='faq'>
+            <h3>FAQ</h3>
+            <ol>
+                <li>Question 1 blah blah?</li>
+                <p>Answer to Question 1</p>
+                <li>Question 2 blah blah?</li>
+                <p>Answer to Question 2</p>
+                <li>Question 3 blah blah?</li>
+                <p>Answer to Question 3</p>
+                <li>Question 4 blah blah?</li>
+                <p>Answer to Question 4</p>
+            </ol>
         </div>
-        <input id='inputField' class='hide' autocomplete='off'>
+    
+        <div id='howScoreWorks'>
+            <p>Big math problem will be explained later here</p>
+        </div>
     </div>
     
-    <div id='modalPopup'></div>
-    <p></p>
-    <footer>
+    <div id='modalPopup' class='hide'>
+        <button id='nextRoundBtn'>Next Round</button>
+    </div>
+    <footer> 
         <h1><a href=''>Key Runner</a></h1>
     </footer>
     <script src='index.js'></script>
