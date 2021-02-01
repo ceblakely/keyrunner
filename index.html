@@ -3,7 +3,7 @@
     <link rel='stylesheet' href='styles.css'>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -14,39 +14,44 @@
         </div>
         
         <div id='mainBox'>
-            <p id='mainP'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non lacus congue, porta est eu, ullamcorper ipsum. Nam a suscipit magna. Sed tempus quam ex, elementum bibendum odio mollis ut. Curabitur ullamcorper interdum erat in convallis. Donec vel pellentesque libero. In molestie sollicitudin tellus, vel varius dolor elementum eu. Ut sodales purus sapien, a imperdiet justo tristique ut. Fusce condimentum porta feugiat. In malesuada nunc et bibendum gravida. Suspendisse auctor orci lacinia ipsum varius, in pharetra eros euismod. Vivamus sollicitudin dui et diam porttitor, non vestibulum arcu tempus. Duis at.</p>
+            <div id='modalPopup' class='hide'>
+                <p id='modalText'></p>
+            </div>
+            <p id='mainP' class='senClass'>Welcome to the Ultimate Typing Test!<br>When you press the button below, a randomly generated sentence will appear. When you press your first key, the timer will start. Type the sentence as accurately and quickly as you can to continue to the next round. Are you ready?</p>
             <input id='inputField' class='hide' autocomplete='off'>
-            <button id='startBtn'>Start Round 1</button>
-        </div>  
-
- 
-                   
+            <button id='startBtn' class='btn'>Start Round 1</button>
+        </div>     
     </div>
+
     <div id='bottomHalf'>
         <div id='faq'>
             <h3>FAQ</h3>
             <ol>
-                <li>Question 1 blah blah?</li>
-                <p>Answer to Question 1</p>
-                <li>Question 2 blah blah?</li>
-                <p>Answer to Question 2</p>
-                <li>Question 3 blah blah?</li>
+                <li>Why should I improve my typing speed?</li>
+                <p>It increases productivity!</p>
+                <li>How do I improve my score?</li>
+                <p>Practice makes perfect.</p>
+                <li>What Words Per Minute (WPM) is considered "good"?</li>
                 <p>Answer to Question 3</p>
-                <li>Question 4 blah blah?</li>
-                <p>Answer to Question 4</p>
             </ol>
         </div>
     
         <div id='howScoreWorks'>
-            <p>Big math problem will be explained later here</p>
+            <h3>How You're Scored</h3>
+            <div id='wpm'>
+                <h4>Gross WPM = ((All Correctly Typed Keys) / 5) / Time in Minutes</h4>
+                <p>Gross WPM calculates how fast you can type without counting in errors. I chose to utilize Gross WPM because you cannot go to the next round if you have any errors in your sentence.</p>
+            </div>
+            <div id='accuracy'>
+                <h4>Accuracy = ((Length of sentence - errors) / Length of Sentence) * 100</h4>
+                <p>This metric determines how accurate all of your keystrokes are. </p>
+            </div>   
         </div>
     </div>
     
-    <div id='modalPopup' class='hide'>
-        <button id='nextRoundBtn'>Next Round</button>
-    </div>
     <footer> 
-        <h1><a href=''>Key Runner</a></h1>
+        <p>Made by Christina Blakely</p>
+        <p><a href='https://github.com/ceblakely'>GitHub</a></p>
     </footer>
     <script src='index.js'></script>
 </body>

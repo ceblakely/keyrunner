@@ -1,120 +1,278 @@
+/* Global Styles Here */
 body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
 }
 #introDiv {
-    background-color: #00100B;   
-    height: 60vh;
+    background-color: #0D19A3;  
 }
 #title {
     padding: 20px 0 0 10px;
+    text-align: center;
 }
 h1 {
     margin-bottom: 5px;
     font-family: 'Arvo', serif;
     font-style: italic;
     font-weight: 700;
-    font-size: 70px;
-    width: 100%;
 }
-
 h1 a {
-    color: #78ffd6;
+    color: white;
     text-decoration: underline;
 }
 h2 {
-    color: #e4c1f9;
+    color: #15DB95;
     font-family: 'Arvo', serif;
-    font-size: 27px;
     margin: 0;
     padding-left: 25px;
 }
-#mainBox {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 150px;
+#modalPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #0D19A3;
+    background-color: white;
+    
     
 }
-#mainP {
-    font-family: 'Lato', sans-serif;
-    font-size: 27px;
-    line-height: 35px;
-    color: white;
-    width: 60%;
-    text-align: center;
-    padding-right: 25px;
-}
-#startBtn {
-    font-size: 22px;
-    border-radius: 10px;
-    border: 2px solid black;
-    padding: 15px;
-    margin: 0 auto;
-}
-
-#bottomHalf {
+#mainBox {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 5%;
 }
+#mainP {
+    font-family: 'Arvo', sans-serif;
+    background-color: #080F6B;
+    color: #F4E4C1;
+    border: 5px solid #15DB95;
+    border-radius: 2px;
+}
+#startBtn {
+    border-radius: 10px;
+    color: #080F5B;
+    margin: 0 auto;
+    background-color: #15DB95;
+    -webkit-transition: color 5s ease-in-out;
+    -moz-transition:    color 5s ease-in-out;
+    -ms-transition:     color 5s ease-in-out;
+    -o-transition:      color 5s ease-in-out; 
+    transition:         color 1s ease-in-out;
+}
+#startBtn:hover {
+    color: #15DB95;
+    background-color: #080F5B;
+    cursor: pointer;
+}
+#inputField {
+    width: inherit;
+    text-align: center;
+}
+
 #faq {
-    background-color: #E4C1F9;
-    width: 50vw;
-    height: 50vh;
+    background-color: white;
+    color: #15DB95;
 }
 #howScoreWorks {
-    background-color:#FFD166;
+    color: #F4E4C1;
+    background-color:#15DB95;
+}
+h3 {
+    font-family: 'Arvo', sans-serif;
+    font-style: italic;
+    text-align: center;
+    text-decoration: underline;
+}
+#wpm,
+#accuracy {
+    font-family: 'Arvo', sans-serif;
+    font-style: normal;
+}
+footer {
+    color: #F4E4C1;
+    background-color: #080F5B;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.senClass {
     width: 50vw;
-    height: 50vh;
+    height: 40vh;
+    padding: 20px;
+}
+.newLetter {
+    color: #0D19A3;
 }
 .hide {
     display: none;
 }
-/*
-#box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    text-align: center;
-    font-size: 34px;
-    margin: auto;
-    height: 90%;
-    width: 70%;
-    background-color: rgba(208, 205, 215, 0.5);
-}
-
-#testBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    margin-top: 0;
-    overflow: hidden;
-    line-height: 40px;
-    padding: 0 10px 0 10px;
-}
-*/
+/* End of Global Styles */
 
 
-#inputField {
-    width: inherit;
-    height: 60px;
-    text-align: center;
-    font-size: 25px;
-}
-#modalPopup {
-    border: 2px solid black;
-    background-color: yellow;
-    font-size: 30px;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #introDiv {
+        height: 50vh;
+    }
+    h1 {
+        font-size: 58px;
+    }
 }
 
-footer {
-    margin-top: 300px;
-    margin-left: 0;
-    padding: 20px;
-    width: 100%;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #introDiv {
+        height: 60vh;
+    }
+    h1 {
+        font-size: 59px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    #startBtn {
+        font-size: 19px;
+        padding: 9px;
+    }
+    #inputField {
+        height: 47px;
+        font-size: 20px;
+    }
+    #bottomHalf {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    h3 {
+        font-size: 24px;
+    }
+    .senClass {
+        font-size: 24px;
+    }
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #introDiv {
+        height: 70vh;
+    }
+    h1 {
+        font-size: 60px;
+    }
+    h2 {
+        font-size: 25px;
+    }
+    #mainP {
+        font-size: 34px;
+    }
+    #startBtn {
+        font-size: 20px;
+        padding: 10px;
+    }
+    #inputField {
+        height: 50px;
+        font-size: 23px;
+    }
+    #bottomHalf {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #faq,
+    #howScoreWorks {
+        width: 100vw;
+        height: 35vh;
+    }
+    h3 {
+        font-size: 25px;
+    }
+    .senClass {
+        font-size: 25px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #introDiv {
+        height: 80vh;
+    }
+    h1 {
+        font-size: 65px;
+    }
+    h2 {
+        font-size: 26px;
+    }
+    #mainP {
+        font-size: 36px;
+    }
+    #startBtn {
+        font-size: 21px;
+        padding: 13px;
+    }
+    #inputField {
+        height: 55px;
+        font-size: 24px;
+    }
+    #bottomHalf {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    #faq,
+    #howScoreWorks {
+        width: 50vw;
+        height: 25vh;
+    }
+    h3 {
+        font-size: 29px;
+    }
+    .senClass {
+        font-size: 27px;
+    /*width: 50vw;
+    height: 39vh; */
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #introDiv {
+        height: 90vh;
+    }
+    h1 {
+        font-size: 70px;
+    }
+    h2 {
+        font-size: 27px;
+    }
+    #mainP {
+        font-size: 40px;
+    }
+    #startBtn {
+        font-size: 22px;
+        padding: 15px;
+    }
+    #inputField {
+        height: 60px;
+        font-size: 25px;
+    }
+    #faq,
+    #howScoreWorks {
+        width: 50vw;
+        height: 30vh;
+    }
+    h3 {
+        font-size: 30px;
+    }
+    .senClass {
+        font-size: 30px;
+        width: 50vw;
+        height: 39vh;
+    }
 }
