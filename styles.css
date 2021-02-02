@@ -3,9 +3,12 @@ body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
+    position: relative;
 }
 #introDiv {
     background-color: #0D19A3;  
+    height: 80%;
+    padding-bottom: 10%;
 }
 #title {
     padding: 20px 0 0 10px;
@@ -34,27 +37,36 @@ h2 {
     transform: translateX(-50%) translateY(-50%);
     color: #0D19A3;
     background-color: white;
-    
-    
 }
+
 #mainBox {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap; 
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     margin-top: 5%;
+    text-align: center;
 }
+
 #mainP {
     font-family: 'Arvo', sans-serif;
-    background-color: #080F6B;
-    color: #F4E4C1;
-    border: 5px solid #15DB95;
     border-radius: 2px;
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
+#mainP ul {
+    text-align: left;
+}
+
+
 #startBtn {
-    border-radius: 10px;
     color: #080F5B;
-    margin: 0 auto;
+    margin: 10px auto;
+    text-align: center;
     background-color: #15DB95;
     -webkit-transition: color 5s ease-in-out;
     -moz-transition:    color 5s ease-in-out;
@@ -74,11 +86,21 @@ h2 {
 
 #faq {
     background-color: white;
-    color: #15DB95;
+    color: #0D19A3;
+}
+#faq ol li {
+    list-style-type: decimal;
+    font-weight: bold;
+    font-size: 22px;
+}
+#faq ol p {
+    font-size: 18px;
+    margin: 10px 0;
 }
 #howScoreWorks {
-    color: #F4E4C1;
+    color: #0D19A3;
     background-color:#15DB95;
+    padding: 0 15px;
 }
 h3 {
     font-family: 'Arvo', sans-serif;
@@ -86,10 +108,16 @@ h3 {
     text-align: center;
     text-decoration: underline;
 }
+#faq,
 #wpm,
 #accuracy {
     font-family: 'Arvo', sans-serif;
     font-style: normal;
+}
+#wpm h4,
+#accuracy h4 {
+    font-size: 21px;
+    font-weight: bold;
 }
 footer {
     color: #F4E4C1;
@@ -98,43 +126,80 @@ footer {
     flex-direction: row;
     justify-content: space-between;
 }
-.senClass {
-    width: 50vw;
-    height: 40vh;
+.borderStyle {
+    background-color: #080F6B;
+    color: #F4E4C1;
+    border: 5px solid #15DB95;
+    width: 80%;
     padding: 20px;
 }
+
 .newLetter {
     color: #0D19A3;
 }
 .hide {
     display: none;
 }
+.container {
+    width: 95%;
+    overflow: hidden;
+}
 /* End of Global Styles */
 
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    #introDiv {
-        height: 50vh;
-    }
     h1 {
-        font-size: 58px;
+        font-size: 33px;
     }
+    h2 {
+        font-size: 20px;
+    }
+    #mainP {
+        font-size: 15px;
+        line-height: 17px;
+    }
+    #bottomHalf {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    #faq ol li {
+        font-size: 15px;
+        text-align: left;
+    }
+    #wpm h4,
+    #accuracy h4 {
+        font-size: 15px;
+        text-align: center;
+    }
+    #faq ol p,
+    #wpm p,
+    #accuracy p {
+        font-size: 12px; 
+    }
+   
+    .senClass {
+        font-size: 19px;
+    }
+    .borderStyle {
+        padding: 10px;
+    }
+    
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    #introDiv {
-        height: 60vh;
-    }
     h1 {
-        font-size: 59px;
+        font-size: 40px;
     }
     h2 {
         font-size: 24px;
     }
     #startBtn {
-        font-size: 19px;
+        font-size: 15px;
         padding: 9px;
     }
     #inputField {
@@ -146,29 +211,30 @@ footer {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: left;
     }
     h3 {
         font-size: 24px;
     }
+    
     .senClass {
-        font-size: 24px;
+        font-size: 15px;    
     }
+    
     
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    #introDiv {
-        height: 70vh;
-    }
     h1 {
-        font-size: 60px;
+        font-size: 50px;
     }
     h2 {
         font-size: 25px;
     }
     #mainP {
-        font-size: 34px;
+        font-size: 21px;
+        line-height: 50px;
     }
     #startBtn {
         font-size: 20px;
@@ -178,38 +244,26 @@ footer {
         height: 50px;
         font-size: 23px;
     }
-    #bottomHalf {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    #faq,
-    #howScoreWorks {
-        width: 100vw;
-        height: 35vh;
-    }
+    
     h3 {
-        font-size: 25px;
-    }
-    .senClass {
         font-size: 25px;
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    #introDiv {
-        height: 80vh;
-    }
     h1 {
-        font-size: 65px;
+        font-size: 60px;
     }
     h2 {
         font-size: 26px;
     }
+    #mainBox {
+        padding: 30px;
+        }
     #mainP {
-        font-size: 36px;
+        font-size: 25px;
+        line-height: 55px;
     }
     #startBtn {
         font-size: 21px;
@@ -233,26 +287,23 @@ footer {
     h3 {
         font-size: 29px;
     }
-    .senClass {
-        font-size: 27px;
-    /*width: 50vw;
-    height: 39vh; */
-    }
 }
+
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    #introDiv {
-        height: 90vh;
-    }
     h1 {
         font-size: 70px;
     }
     h2 {
         font-size: 27px;
     }
+    #mainBox {
+        padding: 30px;
+    }
     #mainP {
-        font-size: 40px;
+        font-size: 30px;
+        line-height: 60px;
     }
     #startBtn {
         font-size: 22px;
@@ -262,17 +313,7 @@ footer {
         height: 60px;
         font-size: 25px;
     }
-    #faq,
-    #howScoreWorks {
-        width: 50vw;
-        height: 30vh;
-    }
     h3 {
         font-size: 30px;
-    }
-    .senClass {
-        font-size: 30px;
-        width: 50vw;
-        height: 39vh;
     }
 }

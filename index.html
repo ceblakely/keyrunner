@@ -8,51 +8,67 @@
 </head>
 <body>
     <div id='introDiv'>
+        
         <div id='title'>
             <h1><a href=''>How Fast Are You?</a></h1>
             <h2>The Ultimate Typing Test</h2>
         </div>
         
-        <div id='mainBox'>
-            <div id='modalPopup' class='hide'>
-                <p id='modalText'></p>
-            </div>
-            <p id='mainP' class='senClass'>Welcome to the Ultimate Typing Test!<br>When you press the button below, a randomly generated sentence will appear. When you press your first key, the timer will start. Type the sentence as accurately and quickly as you can to continue to the next round. Are you ready?</p>
-            <input id='inputField' class='hide' autocomplete='off'>
-            <button id='startBtn' class='btn'>Start Round 1</button>
-        </div>     
+        <div id='mainBox' class='senClass'>
+            <div class='borderStyle'>
+                <div id='modalPopup' class='hide'>
+                    <p id='modalText'></p>
+                </div>
+                <div id='mainP'>
+                    <ul>
+                        <li>When you press the button below, a randomly generated sentence will appear.</li>
+                        <li>When you press your first key, the timer will start.</li>
+                        <li>Correctly spelled letters will have a <span style="background-color: #15DB95" class="newLetter">green background</span></li>
+                        <li>Incorrectly spelled letters will have a <span style="background-color: #f24236" class="newLetter">red background</span></li>
+                        <li>The sentence must be typed correctly to go to the next round!</li>
+                        <p>Are you ready?</p>
+                    </ul>
+                    <button id='startBtn' class='btn'>Start Round 1</button>
+                    <input id='inputField' class='hide' autocomplete='off'>
+                </div>
+            </div>     
+        </div>
     </div>
 
     <div id='bottomHalf'>
         <div id='faq'>
-            <h3>FAQ</h3>
-            <ol>
-                <li>Why should I improve my typing speed?</li>
-                <p>It increases productivity!</p>
-                <li>How do I improve my score?</li>
-                <p>Practice makes perfect.</p>
-                <li>What Words Per Minute (WPM) is considered "good"?</li>
-                <p>Answer to Question 3</p>
-            </ol>
+            <div class='container'>
+                <h3>FAQ</h3>
+                <ol>
+                    <li>Why should I improve my typing speed?</li><hr>
+                    <p>Proficiency in typing is a skill. Increasing your WPM can help boost your resume to potential employers because it increases productivity!</p>
+                    <li>How do I improve my score?</li><hr>
+                    <p>Practice makes perfect. ;)</p>
+                    <li>What Words Per Minute (WPM) is considered "good"?</li><hr>
+                    <p>The fastest typists have been recorded of having a WPM of over 200! The average person has about 40 WPM.</p>
+                </ol>
+            </div>
         </div>
     
         <div id='howScoreWorks'>
-            <h3>How You're Scored</h3>
-            <div id='wpm'>
-                <h4>Gross WPM = ((All Correctly Typed Keys) / 5) / Time in Minutes</h4>
-                <p>Gross WPM calculates how fast you can type without counting in errors. I chose to utilize Gross WPM because you cannot go to the next round if you have any errors in your sentence.</p>
+            <div class='container'>
+                <h3>How You're Scored</h3>
+                <div id='wpm'>
+                    <img src='../images/gross-wpm.png' />
+                    <p>Gross WPM calculates how fast you can type without counting in errors. I chose to utilize Gross WPM because you cannot go to the next round if you have any errors in your sentence.</p>
+                </div>
+                <div id='accuracy'>
+                    <h4>Accuracy = ((Length of sentence - errors) / Length of Sentence) * 100</h4>
+                    <p>This metric determines how accurate all of your keystrokes are. </p>
+                </div>   
             </div>
-            <div id='accuracy'>
-                <h4>Accuracy = ((Length of sentence - errors) / Length of Sentence) * 100</h4>
-                <p>This metric determines how accurate all of your keystrokes are. </p>
-            </div>   
         </div>
     </div>
-    
+    <!--
     <footer> 
         <p>Made by Christina Blakely</p>
         <p><a href='https://github.com/ceblakely'>GitHub</a></p>
-    </footer>
+    </footer> -->
     <script src='index.js'></script>
 </body>
 </html>
