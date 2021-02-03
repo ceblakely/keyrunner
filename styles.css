@@ -3,7 +3,6 @@ body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
-    position: relative;
 }
 #introDiv {
     background-color: #0D19A3;  
@@ -25,10 +24,12 @@ h1 a {
     text-decoration: underline;
 }
 h2 {
-    color: #15DB95;
     font-family: 'Arvo', serif;
     margin: 0;
     padding-left: 25px;
+}
+h2 a {
+    color: #15DB95;
 }
 #modalPopup {
     position: absolute;
@@ -49,7 +50,7 @@ h2 {
     text-align: center;
 }
 
-#mainP {
+#mainDiv {
     font-family: 'Arvo', sans-serif;
     border-radius: 2px;
     display: flex;
@@ -58,7 +59,7 @@ h2 {
     justify-content: center;
     align-items: center;
 }
-#mainP ul {
+#mainDiv ul {
     text-align: left;
 }
 
@@ -85,8 +86,10 @@ h2 {
 }
 
 #faq {
-    background-color: white;
+    background-color: #15DB95;
     color: #0D19A3;
+    padding: 0 15px;
+    height: 500px; 
 }
 #faq ol li {
     list-style-type: decimal;
@@ -97,10 +100,15 @@ h2 {
     font-size: 18px;
     margin: 10px 0;
 }
+hr {
+    background-color: #0D19A3
+}
 #howScoreWorks {
     color: #0D19A3;
-    background-color:#15DB95;
+    background-color:white;
     padding: 0 15px;
+    margin: 0 auto;
+    height: 500px;
 }
 h3 {
     font-family: 'Arvo', sans-serif;
@@ -119,12 +127,29 @@ h3 {
     font-size: 21px;
     font-weight: bold;
 }
+#wpm p,
+#accuracy p {
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+#wpmFormula,
+#accuracyFormula {
+    display: block;
+    margin-right: auto; 
+    width: 60%;
+}
+
 footer {
-    color: #F4E4C1;
+    color: white;
     background-color: #080F5B;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 20px 20px;
+}
+footer p a {
+    color: white;
+    text-decoration: none;
 }
 .borderStyle {
     background-color: #080F6B;
@@ -138,11 +163,26 @@ footer {
     color: #0D19A3;
 }
 .hide {
-    display: none;
+    display: none
+}
+.show {
+    display: block;
 }
 .container {
     width: 95%;
     overflow: hidden;
+}
+.roundInfoStyle {
+    margin: 0;
+}
+#mainP h4 {
+    font-family: 'Arvo', sans-serif;
+    font-style: italic;
+    font-size: 32px;
+}
+#mainP p {
+    margin: 0;
+    text-align: left;
 }
 /* End of Global Styles */
 
@@ -155,7 +195,7 @@ footer {
     h2 {
         font-size: 20px;
     }
-    #mainP {
+    #mainDiv {
         font-size: 15px;
         line-height: 17px;
     }
@@ -166,6 +206,11 @@ footer {
         align-items: center;
         
     }
+    #faq,
+    #howScoreWorks {
+        height: 70%;
+    }
+    
     #faq ol li {
         font-size: 15px;
         text-align: left;
@@ -178,9 +223,13 @@ footer {
     #faq ol p,
     #wpm p,
     #accuracy p {
-        font-size: 12px; 
+        font-size: 10px; 
+        text-align: center;
     }
-   
+    #wpmFormula,
+    #accuracyFormula {
+        width: 100%;
+    }
     .senClass {
         font-size: 19px;
     }
@@ -220,8 +269,6 @@ footer {
     .senClass {
         font-size: 15px;    
     }
-    
-    
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -232,7 +279,7 @@ footer {
     h2 {
         font-size: 25px;
     }
-    #mainP {
+    #mainDiv {
         font-size: 21px;
         line-height: 50px;
     }
@@ -245,6 +292,10 @@ footer {
         font-size: 23px;
     }
     
+    #wpmFormula,
+    #accuracyFormula {
+        width: 80%;
+    }
     h3 {
         font-size: 25px;
     }
@@ -261,7 +312,7 @@ footer {
     #mainBox {
         padding: 30px;
         }
-    #mainP {
+    #mainDiv {
         font-size: 25px;
         line-height: 55px;
     }
@@ -279,13 +330,13 @@ footer {
         justify-content: center;
         align-items: center;
     }
-    #faq,
-    #howScoreWorks {
-        width: 50vw;
-        height: 25vh;
-    }
+    
     h3 {
         font-size: 29px;
+    }
+    #faq,
+    #howScoreWorks {
+        height: 620px;
     }
 }
 
@@ -301,7 +352,7 @@ footer {
     #mainBox {
         padding: 30px;
     }
-    #mainP {
+    #mainDiv {
         font-size: 30px;
         line-height: 60px;
     }
@@ -315,5 +366,9 @@ footer {
     }
     h3 {
         font-size: 30px;
+    }
+    #faq,
+    #howScoreWorks {
+        height: 600px;
     }
 }
