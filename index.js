@@ -1,188 +1,237 @@
 let usedSentences = [];
-let currentIndex;
-let currentRound = 0;
+let currentIndex = 0;
+let wordIndex = 0;
+let time = 60;
+let totalKeystrokes = 0;
 
 let userInfo = {
-    1: {},
-    2: {},
-    3: {},
+  // game string
+  // game string in an array
+  // new string array to compare to the original
+  // length array that includes span elements
 };
-
-document.getElementById('startBtn').addEventListener('click', () => {
-    startNewRound();
-    showElements([document.getElementById('inputField')]);
-    hideElements([document.getElementById('startBtn'), document.getElementById('introUl')]);
-});
-
-document.addEventListener('keyup', (e) => {
-    getKey(e);
-});
-
 const sentences = [
-    "Nice to meet you. Where you been? I could show you incredible things. Magic, madness, heaven, sin. Saw you there and I thought oh my god. Look at that face, you look like my next mistake. Love\'s a game, wanna play?",
-    "Gotta keep my head held high. There's always gonna be another mountain. I'm always gonna wanna make it move. Always gonna be an uphill battle. Sometimes I'm gonna have to lose. Ain't about how fast I get there. Ain't about what's waiting on the other side. It's the climb.",
-    "A thousand miles seems pretty far. But they've got planes and trains and cars. I'd walk to you if I had no other way. Our friends would all make fun of us. And we'll just laugh along because we know. That none of them have felt this way. Delilah, I can promise you. That by the time we get through. The world will never ever be the same. And you're to blame",
-    "Backbeat, the word is on the street. That the fire in your heart is out. I'm sure you've heard it all before. But you never really had a doubt. I don't believe that anybody. Feels the way I do about you now. And all the roads we have to walk are winding. And all the lights that lead us there are blinding. There are many things that I would like to say to you but I don't know how.",
-    "Well, the plane landed and when I came out. There was a dude who looked like a cop standing there with my name out. I ain't trying to get arrested yet I just got here. I sprang with the quickness like lightning, disappeared. I whistled for a cab and when it came near The license plate said fresh and it had dice in the mirror, If anything I could say that this cab was rare. But I thought 'Nah, forget it' - 'Yo, home to Bel Air'"
+  "how was dog mail cat ear drink home glass cake water car textbook baseboards lackhack whichever yellow stargaze snow day school park anteater blue television selling astonishing indoor reasonable embryo gasp background systematic functional final case behavior replacement resource needle marketing novel west structure fang redundant snail grouchy tendency badge legs bloody grubby imagine nappy sedate murmur lumpy good sleep fall existence knit connotesting melodic die request push kid sour disease houses drain dinosaurs mislead legrail violent flock minetray forgive drunk",
+  "website pen paper agenda toy baby dinner music circle team interview influence ring cleaner fluffy charger planner cup mouse sticker tree nature edge fan mosquito soar prevalence state instinct snow utter spit preoccupation window key height invasion ostracize mean contradiction category hypothesis routine ghostwriter pat stress happen image fierce religion toe thin blush illustrious inhabit apparel amount event ooze recondite escape beneficial insect jewel thumbs way shut board splendid burn burly prove illumine pet womanly degree imply canvass",
+  "shoe book ring plug garden draw mailbox mouse charge food assist author became flight editor eating doctor engine empire dollar winner tennis ticket window writer yellow concert color-blind watch sour positive sentence disposition common do overeat hell colon plagiarize knot wire orgy research credibility hunter appearance veteran steep fight mile shake list glance obsolete branch neat string groovy boiling thirsty violates link satiated i gestion amazing reply ring tree enchanted rend restrain chain kind hug attract detailed cease rude worship ant lumber daffy suffer combative numerous deadpan giants snails aunt appear",
+  "tree bird movie heel dog truck soccer game polish color share sports shopping travel money weather computer average inject meadow quote ruin dark lesson team problem crude body concert contrast wool leap hypnotize creature survive help horses mouth fancy breathe stop typical wet zoom gabby blowhuge perfect suggestions alty successful help less married consign wary applegarden blow lively chance cheap sour legal taste part suggest allow outrageous compel giant crabby game word respect race stage modify jittery wave few secretary disillusioned perpetual verify press watch join consult bat feeble curly joyous  cry milky lavish colossal apathetic migrate fish",
 ];
 
-function getSentence(randomIndex) {
-    let randomSen = sentences[randomIndex];
-    usedSentences.push(sentences.splice(randomIndex, randomIndex + 1));
-    return randomSen;
-}
-
 function getKey(e) {
-    let keyPressed = `${e.key}`;
-    const keysToIgnore = [
-      "Shift",
-      "Enter",
-      "Tab",
-      "CapsLock",
-      "Control",
-      "Alt",
-      "Meta",
-      "ArrowLeft",
-      "ArrowUp",
-      "ArrowDown",
-      "ArrowRight",
-      "`"
-    ];
+  let keyPressed = `${e.key}`;
+  const keysToIgnore = [
+    "Shift",
+    "Enter",
+    "Tab",
+    "CapsLock",
+    "Control",
+    "Alt",
+    "Meta",
+    "ArrowLeft",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowRight",
+    "`",
+  ];
 
-    if (keysToIgnore.includes(keyPressed)) {
-        console.log('Ignore key');
-    } else if (keyPressed == 'Backspace') {
-        if (userInfo[currentRound].lastKeys.length == 0) {
-            console.log('Press a key to start.');
-        } else {
-            backspaceKey();
-        }
-    } else if (e.keyCode == 32) {
-        addSpace(' ');
-        colorText(' ');
+  if (keysToIgnore.includes(keyPressed)) {
+    console.log("Ignore key");
+  } else if (keyPressed == "Backspace") {
+    if (userInfo.lastKeys.length == 0) {
+      console.log("Press a key to start.");
     } else {
-        if (userInfo[currentRound].newStringArr == userInfo[currentRound].gameString) {
-            console.log('You have completed this round');
-        } else {
-            colorText(keyPressed);
-        }    
+      backspaceKey();
     }
+  } else if (e.keyCode == 32) {
+    addSpace(" ");
+    colorText(" ");
+  } else {
+    if (userInfo.newStringArr == userInfo.gameString) {
+      console.log("You have completed this round");
+    } else {
+      colorText(keyPressed);
+    }
+  }
 }
 
 function addSpace(spaceKey) {
-    if (spaceKey == userInfo[currentRound].gameString[currentIndex]) {
-        let val = document.getElementById('inputField').value.slice(0, -1);
-        userInfo[currentRound].lastWords.push(val);
-        document.getElementById('inputField').value = '';
-    }
+  if (spaceKey == userInfo.gameString[currentIndex]) {
+    let val = document.getElementById("inputField").value.slice(0, -1);
+    userInfo.lastWords.push(val);
+    document.getElementById("inputField").value = "";
+    wordIndex++;
+    console.log("word index: " + wordIndex);
+  }
 }
 
 function colorText(key) {
-    let currentLetter = userInfo[currentRound].valArr.shift();
-    let coloredLetter = isCorrect(key, currentLetter);
-    userInfo[currentRound].lastKeys.push(key); 
-    userInfo[currentRound].lenArr.push(coloredLetter.length);
-    userInfo[currentRound].newStringArr += coloredLetter;
-    currentIndex++;
+  let currentLetter = userInfo.valArr.shift();
+  let coloredLetter = isCorrect(key, currentLetter);
+  userInfo.lastKeys.push(key);
+  userInfo.lenArr.push(coloredLetter.length);
+  userInfo.newStringArr += coloredLetter;
 
-    insertNew(userInfo[currentRound].newStringArr, userInfo[currentRound].valArr);
+  currentIndex++;
+
+  insertNew(userInfo.newStringArr, userInfo.valArr);
 }
-    
+
 function isCorrect(key, currentLetter) {
-    if (key == currentLetter) {
-        return '<span style="background-color: #15DB95" class="newLetter">' + currentLetter + '</span>';
-    } else {
-        userInfo[currentRound].errors++;
-        return'<span style="background-color: #f24236" class="newLetter">' + currentLetter + '</span>';
-    }
+  if (key == currentLetter) {
+    return (
+      '<span style="background-color: #1b998b" class="newLetter">' +
+      currentLetter +
+      "</span>"
+    );
+  } else {
+    userInfo.errors++;
+    return (
+      '<span style="background-color: #a31621" class="newLetter">' +
+      currentLetter +
+      "</span>"
+    );
+  }
 }
 
 function backspaceKey() {
-    let lastLen =userInfo[currentRound].lenArr.pop();
-    let lastKey = userInfo[currentRound].lastKeys.pop();
-    currentIndex = currentIndex - 1;
-    userInfo[currentRound].valArr.unshift(userInfo[currentRound].gameString[currentIndex]);
+  let lastLen = userInfo.lenArr.pop();
+  let lastKey = userInfo.lastKeys.pop();
+  currentIndex = currentIndex - 1;
+  userInfo.valArr.unshift(userInfo.gameString[currentIndex]);
 
-    userInfo[currentRound].newStringArr = userInfo[currentRound].newStringArr.slice(0, userInfo[currentRound].newStringArr.length - lastLen);
+  userInfo.newStringArr = userInfo.newStringArr.slice(
+    0,
+    userInfo.newStringArr.length - lastLen
+  );
 
-    if (lastKey == ' ' && lastKey == userInfo[currentRound].gameString[currentIndex]) {
-        let lastWord = userInfo[currentRound].lastWords.pop();
-        document.getElementById('inputField').value = lastWord;
-    } 
-    insertNew(userInfo[currentRound].newStringArr, userInfo[currentRound].valArr);
+  if (lastKey == " ") {
+    let lastWord = userInfo.lastWords.pop();
+    document.getElementById("inputField").value = lastWord;
+  }
+  insertNew(userInfo.newStringArr, userInfo.valArr);
 }
-  
+
 function insertNew(newStringArr, valArr) {
-    document.getElementById("mainP").innerHTML = newStringArr + valArr.join('');
-    
-    if (userInfo[currentRound].lastKeys.join('') == userInfo[currentRound].gameString) {
-        userInfo[currentRound].endTime = new Date();
-        hideElements([document.getElementById('inputField')]);
-        displayRoundResults();
-    }
+  document.getElementById("wordsField").innerHTML =
+    newStringArr + valArr.join("");
+
+  if (userInfo.lastKeys.join("") == userInfo.gameString) {
+    alert("amazing!!");
+  }
 }
-
+/*
 function displayRoundResults() {
-    let scores = getScore();
-    userInfo[currentRound].wpm = scores[0];
-    userInfo[currentRound].accuracy = Math.round(scores[1]);
-    
-    document.getElementById('mainP').setAttribute('class', 'roundInfoStyle');
-    document.getElementById('mainP').innerHTML = '<h4>Round ' + currentRound + ' Complete</h4><hr><p>Errors: ' + userInfo[currentRound].errors + '<p> WPM: ' + userInfo[currentRound].wpm + '</p><p> Accuracy: ' + userInfo[currentRound].accuracy + '%</p>';
+  let scores = getScore();
+  userInfo[currentRound].wpm = scores[0];
+  userInfo[currentRound].accuracy = Math.round(scores[1]);
 
-    if (currentRound < 3) {
-        document.getElementById('startBtn').innerText = 'Next Round';
-    } else {
-        document.getElementById('startBtn').innerText = 'See Final Score';
-        document.getElementById('startBtn').addEventListener('click', finalScore);
-    }
-    showElements([document.getElementById('startBtn')]);
+  document.getElementById("mainP").setAttribute("class", "roundInfoStyle");
+  document.getElementById("mainP").innerHTML =
+    "<h4>Round " +
+    currentRound +
+    " Complete</h4><hr><p>Errors: " +
+    userInfo[currentRound].errors +
+    "<p> WPM: " +
+    userInfo[currentRound].wpm +
+    "</p><p> Accuracy: " +
+    userInfo[currentRound].accuracy +
+    "%</p>";
+}
+/*
+  if (currentRound < 3) {
+    document.getElementById("startBtn").innerText = "Next Round";
+  } else {
+    document.getElementById("startBtn").innerText = "See Final Score";
+    document.getElementById("startBtn").addEventListener("click", finalScore);
+  }
+  showElements([document.getElementById("startBtn")]);
 }
 
 function getScore() {
-    let seconds = (userInfo[currentRound].endTime - userInfo[currentRound].startTime) / 1000;
-    let minutes = seconds / 60;
-    console.log(Math.round(seconds) + ' seconds');
-    let wpm = Math.floor(((userInfo[currentRound].gameString.length) / 5 ) / minutes);
-    let accuracy = ((userInfo[currentRound].gameString.length - userInfo[currentRound].errors) / userInfo[currentRound].gameString.length) * 100;
-    console.log(wpm, accuracy);
-    
-    return [wpm, accuracy];
+  let seconds =
+    (userInfo[currentRound].endTime - userInfo[currentRound].startTime) / 1000;
+  let minutes = seconds / 60;
+  console.log(Math.round(seconds) + " seconds");
+  let wpm = Math.floor(userInfo[currentRound].gameString.length / 5 / minutes);
+  let accuracy =
+    ((userInfo[currentRound].gameString.length -
+      userInfo[currentRound].errors) /
+      userInfo[currentRound].gameString.length) *
+    100;
+  console.log(wpm, accuracy);
+
+  return [wpm, accuracy];
 }
 function finalScore() {
-    let totalErrors = userInfo[1].errors + userInfo[2].errors + userInfo[3].errors;
-    let averageWpm = Math.round((userInfo[1].wpm + userInfo[2].wpm + userInfo[3].wpm) / 3);
-    let averageAcc = Math.round((userInfo[1].accuracy + userInfo[2].accuracy + userInfo[3].accuracy) / 3);
+  let totalErrors =
+    userInfo[1].errors + userInfo[2].errors + userInfo[3].errors;
+  let averageWpm = Math.round(
+    (userInfo[1].wpm + userInfo[2].wpm + userInfo[3].wpm) / 3
+  );
+  let averageAcc = Math.round(
+    (userInfo[1].accuracy + userInfo[2].accuracy + userInfo[3].accuracy) / 3
+  );
 
-    document.getElementById('mainP').setAttribute('class', 'roundInfoStyle');
-    document.getElementById('mainP').innerHTML = '<h4>Final Score</h4><hr><p>Total Errors: ' + totalErrors + '<p> Average WPM: ' + averageWpm + '</p><p> Average Accuracy: ' + averageAcc + '%</p>';
-    hideElements([document.getElementById('startBtn')]);
+  document.getElementById("mainP").setAttribute("class", "roundInfoStyle");
+  document.getElementById("mainP").innerHTML =
+    "<h4>Final Score</h4><hr><p>Total Errors: " +
+    totalErrors +
+    "<p> Average WPM: " +
+    averageWpm +
+    "</p><p> Average Accuracy: " +
+    averageAcc +
+    "%</p>";
 }
 
-function hideElements(arr) {
-    arr.forEach((elem) => {
-        elem.setAttribute('class', 'hide');
-    });
-}
-function showElements(arr) {
-    arr.forEach((elem) => {
-        elem.removeAttribute('class', 'hide');
-    });
-}
 
 function startNewRound() {
-    currentIndex = 0;
-    currentRound++;
-    
-    userInfo[currentRound].gameString = getSentence(Math.floor(Math.random() * sentences.length));
-    userInfo[currentRound].valArr = userInfo[currentRound].gameString.split('');
-    userInfo[currentRound].newStringArr = '';
-    userInfo[currentRound].errors = 0;
-    userInfo[currentRound].lenArr = [];
-    userInfo[currentRound].lastKeys = [];
-    userInfo[currentRound].lastWords = [];
-    userInfo[currentRound].startTime = new Date();
+  document.getElementById("inputField").value = "";
+}
+*/
+/* Below this is good */
+window.onload = function () {
+  let randomSentence = getSentence(
+    Math.floor(Math.random() * sentences.length)
+  );
+  document.getElementById("wordsField").innerText = randomSentence;
+  userInfo.gameString = randomSentence;
+  userInfo.valArr = randomSentence.split("");
+  userInfo.eachWordArr = randomSentence.split(" ");
+  userInfo.newStringArr = "";
+  userInfo.errors = 0;
+  userInfo.lenArr = [];
+  userInfo.lastKeys = [];
+  userInfo.lastWords = [];
+};
+function getSentence(randomIndex) {
+  let randomSen = sentences[randomIndex];
+  usedSentences.push(sentences.splice(randomIndex, randomIndex + 1));
+  return randomSen;
+}
 
-    document.getElementById('mainP').innerHTML = userInfo[currentRound].gameString;
-    document.getElementById('inputField').value = '';
+document.addEventListener("keyup", (e) => {
+  if (totalKeystrokes == 0) {
+    let countdownInterval = setInterval(countdown_timer, 1000);
+    totalKeystrokes++;
+    document.getElementById("instructions").setAttribute("class", "hide");
+    e.preventDefault();
+  }
+  getKey(e);
+});
+
+function countdown_timer() {
+  if (time != 0) {
+    let minutes = Math.floor((time / 60) % 60);
+    let seconds = Math.floor(time % 60);
+    document.getElementById("countdownClock").innerHTML =
+      minutes + ":" + seconds;
+    time--;
+    if (seconds < 10) {
+      document.getElementById("countdownClock").innerHTML =
+        minutes + ":0" + seconds;
+    }
+  } else {
+    document.getElementById("countdownClock").innerHTML = "0:00";
+    clearInterval(countdown_timer);
+  }
 }

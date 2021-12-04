@@ -4,50 +4,70 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Code+Latin&family=PT+Serif&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div id='introDiv'>
-        <div id='title'>
-            <h1><a href='index.html'>How Fast Are You?</a></h1>
-            <h2><a href='index.html'>The Ultimate Typing Test</a></h2>
-        </div>
-        
-        <div id='mainBox' class='senClass'>
-            <div class='borderStyle'>
-                <div id='mainDiv'>
-                    <p id='mainP'></p>
-                    <ul id='introUl'>
-                        <li>When you press the button below, a randomly generated sentence will appear.</li>
-                        <li>When you press your first key, the timer will start.</li>
-                        <li>Correctly spelled letters will have a <span style="background-color: #15DB95" class="newLetter">green background.</span></li>
-                        <li>Incorrectly spelled letters will have a <span style="background-color: #f24236" class="newLetter">red background.</span></li>
-                        <li>The sentence must be typed correctly to go to the next round!</li>
-                        <p>Are you ready?</p>
-                    </ul>
-                    <button id='startBtn'>Start Round 1</button>
-                    <input id='inputField' class='hide' autocomplete='off'>
-                </div>
-            </div>     
+    <div id='intro'>
+        <nav>
+            <h1><a href='index.html'><span style="color:#05668d">Keyboard</span><span style="color: #028090">Runner</span></a></h1>
+        </nav>
+            
+        <div id='mainBox'>
+            <h3 id='instructions'>Start Typing to Start the Clock</h3>
+            <p id='wordsField'></p>       
+            <input id='inputField' autocomplete='off'>
+            <h2 id='countdownClock'>1:00</h2>
         </div>
     </div>
 
     <div id='bottomHalf'>
-        <div id='faq'>
-            <div class='container'>
-                <h3>FAQ</h3>
-                <ol>
-                    <li>Why should I improve my typing speed?</li><hr>
-                    <p>Proficiency in typing is a skill. Increasing your WPM can help boost your resume to potential employers because it increases productivity!</p>
-                    <li>How do I improve my score?</li><hr>
-                    <p>Practice makes perfect. ;)</p>
-                    <li>What Words Per Minute (WPM) is considered "good"?</li><hr>
-                    <p>The fastest typists have been recorded of having a WPM of over 200! The average person has about 40 WPM.</p>
-                    <li>Who are you and what's your score?</li><hr>
-                    <p>I'm Christina! I type about 85 WPM. If you have feedback on this website, email me at <a href='mailto:cblakelydev@gmail.com'>cblakelydev@gmail.com</a></p>
-                </ol>
-            </div>
+        <div id='bottomLeft'>
+            <h3>How You're Scored</h3>
+                <div id='wpm'>
+                    <h4>Words per Minute (WPM)</h4>
+                    <!-- <img src='images/gross-wpm.png' id='wpmFormula'/>-->
+                    <p>To calculate this metric, we take all the typed characters and divide them by 5. </p>
+                    <!-- <p>Gross WPM calculates how fast you can type without counting in errors. I chose to utilize Gross WPM because you cannot go to the next round if you have any errors in your sentence.</p> -->
+                </div>
+                <div id='accuracy'>
+                    <h4>Accuracy</h4>
+                    <!-- <img src='images/accuracy.png' id='accuracyFormula'> -->
+                    <p>This metric determines how accurate all of your keystrokes are. To do this, we divide the number of correctly typed keys by the total number of characters and multiply by 100.</p>
+                </div>   
+            <!-- <img src='https://images.pexels.com/photos/265631/pexels-photo-265631.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'> -->
         </div>
+        <div id='bottomRight'>
+            <div id='faq'>
+                    <h3>FAQ</h3>
+                    <ol>
+                        <li>How do I improve my score?</li>
+                        <p>Practice makes perfect. ;)</p>
+                        <li>What Words Per Minute (WPM) is considered "good"?</li>
+                        <p>The fastest typists have been recorded of having a WPM of over 200! The average person has about 40 WPM.</p>
+                        <li>Who are you and what's your score?</li>
+                        <p>I'm Christina! I type about 85 WPM. If you have feedback on this website, email me at <a href='mailto:cblakelydev@gmail.com'>cblakelydev@gmail.com</a></p>
+                    </ol>
+                </div>
+            </div> 
+    </div>
+
+    <footer> 
+        <p>Made by Christina Blakely</p>
+        <div id='links'>
+            <p><a href='https://github.com/ceblakely'>GitHub</a></p>
+            <p><a href='https://dev.to/ceblakely'>DEV</a></p>
+        </div>
+        
+    </footer> 
+    <script src='index.js'></script>
+</body>
+</html>
+<!-- 
+    <div id='bottomHalf'>
+        
     
         <div id='howScoreWorks'>
             <div class='container'>
@@ -62,12 +82,6 @@
                 </div>   
             </div>
         </div>
-    </div>
+    </div> -->
     
-    <footer> 
-        <p>Made by Christina Blakely</p>
-        <p><a href='https://github.com/ceblakely'>GitHub</a></p>
-    </footer> 
-    <script src='index.js'></script>
-</body>
-</html>
+ 

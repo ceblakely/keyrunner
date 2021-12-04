@@ -1,374 +1,168 @@
-/* Global Styles Here */
-body {
+@media only screen and (min-width: 320px) {
+  body {
+    background-color: #faf9f9;
     padding: 0;
     margin: 0;
     overflow-x: hidden;
-}
-#introDiv {
-    background-color: #0D19A3;  
-    height: 80%;
-    padding-bottom: 10%;
-}
-#title {
-    padding: 20px 0 0 10px;
-    text-align: center;
-}
-h1 {
-    margin-bottom: 5px;
-    font-family: 'Arvo', serif;
-    font-style: italic;
-    font-weight: 700;
-}
-h1 a {
-    color: white;
-    text-decoration: underline;
-}
-h2 {
-    font-family: 'Arvo', serif;
-    margin: 0;
-    padding-left: 25px;
-}
-h2 a {
-    color: #15DB95;
-}
-#modalPopup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: #0D19A3;
-    background-color: white;
-}
-
-#mainBox {
+  }
+  h1 a {
+    text-decoration: none;
+  }
+  h3 {
+    font-family: "PT Serif", serif;
+  }
+  #intro {
+    height: 100vh;
+  }
+  nav {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap; 
-    justify-content: center;
-    align-items: center; 
-    margin-top: 5%;
-    text-align: center;
-}
-
-#mainDiv {
-    font-family: 'Arvo', sans-serif;
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column; 
-    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-#mainDiv ul {
-    text-align: left;
-}
-
-
-#startBtn {
-    color: #080F5B;
-    margin: 10px auto;
+    background-color: #eae4e9;
+  }
+  #mainBox {
     text-align: center;
-    background-color: #15DB95;
-    -webkit-transition: color 5s ease-in-out;
-    -moz-transition:    color 5s ease-in-out;
-    -ms-transition:     color 5s ease-in-out;
-    -o-transition:      color 5s ease-in-out; 
-    transition:         color 1s ease-in-out;
-}
-#startBtn:hover {
-    color: #15DB95;
-    background-color: #080F5B;
-    cursor: pointer;
-}
-#inputField {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  #mainBox h3 {
+    font-size: 25px;
+    padding: 5px;
+    margin: 0;
+  }
+  #countdownClock {
+    background-color: #d9dcd6;
+    color: #028090;
+    border-radius: 50%;
+    padding: 3%;
+  }
+  #wordsField {
+    width: 80vw;
+    height: 40vh;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px grey;
+  }
+  p {
+    font-family: "PT Serif", serif;
+    font-size: 30px;
+    line-height: 42px;
+    overflow: hidden;
+  }
+  #inputField {
+    font-size: 30px;
     width: inherit;
     text-align: center;
-}
+  }
 
-#faq {
-    background-color: #15DB95;
-    color: #0D19A3;
-    padding: 0 15px;
-    height: 500px; 
-}
-#faq ol li {
-    list-style-type: decimal;
+  #bottomHalf {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-image: linear-gradient(#eae4e9, #dfe7fd);
+  }
+
+  #faq {
+    /* background-color: #d9dcd6; */
+    color: black;
+    width: 100%;
+    height: auto;
+  }
+
+  #faq h3,
+  #bottomLeft h3 {
+    font-size: 24px;
+    text-align: center;
+  }
+  #faq ol li,
+  #bottomLeft h4 {
+    font-family: "Arvo", serif;
+    font-style: normal;
     font-weight: bold;
     font-size: 22px;
-}
-#faq ol p {
+    list-style-type: decimal;
+    padding: 0;
+  }
+  #faq ol p,
+  #bottomLeft p {
+    font-family: "PT Serif", serif;
     font-size: 18px;
-    margin: 10px 0;
-}
-hr {
-    background-color: #0D19A3
-}
-#howScoreWorks {
-    color: #0D19A3;
-    background-color:white;
-    padding: 0 15px;
-    margin: 0 auto;
-    height: 500px;
-}
-h3 {
-    font-family: 'Arvo', sans-serif;
-    font-style: italic;
-    text-align: center;
-    text-decoration: underline;
-}
-#faq,
-#wpm,
-#accuracy {
-    font-family: 'Arvo', sans-serif;
-    font-style: normal;
-}
-#wpm h4,
-#accuracy h4 {
-    font-size: 21px;
-    font-weight: bold;
-}
-#wpm p,
-#accuracy p {
-    margin: 0 auto;
-    padding-bottom: 20px;
-}
-#wpmFormula,
-#accuracyFormula {
-    display: block;
-    margin-right: auto; 
-    width: 60%;
-}
-
-footer {
-    color: white;
-    background-color: #080F5B;
+    margin: 0;
+  }
+  #faq a {
+    color: black;
+  }
+  #faq a:hover {
+    color: #028090;
+  }
+  footer {
+    color: black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 20px;
-}
-footer p a {
-    color: white;
+  }
+  footer #links {
+    display: flex;
+    flex-direction: row;
+  }
+  footer p {
+    font-size: 20px;
+  }
+  footer p a {
+    color: black;
     text-decoration: none;
-}
-.borderStyle {
-    background-color: #080F6B;
-    color: #F4E4C1;
-    border: 5px solid #15DB95;
-    width: 80%;
-    padding: 20px;
-}
-
-.newLetter {
-    color: #0D19A3;
-}
-.hide {
-    display: none
-}
-.show {
+    padding: 0 10px;
+  }
+  footer p a:hover {
+    color: #028090;
+  }
+  .newLetter {
+    color: #dcfffd;
+  }
+  .hide {
+    display: none;
+  }
+  .show {
     display: block;
-}
-.container {
+  }
+  .container {
     width: 95%;
     overflow: hidden;
-}
-.roundInfoStyle {
-    margin: 0;
-}
-#mainP h4 {
-    font-family: 'Arvo', sans-serif;
-    font-style: italic;
-    font-size: 32px;
-}
-#mainP p {
-    margin: 0;
-    text-align: left;
-}
-/* End of Global Styles */
-
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    h1 {
-        font-size: 33px;
-    }
-    h2 {
-        font-size: 20px;
-    }
-    #mainDiv {
-        font-size: 15px;
-        line-height: 17px;
-    }
-    #bottomHalf {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-    }
-    #faq,
-    #howScoreWorks {
-        height: 70%;
-    }
-    
-    #faq ol li {
-        font-size: 15px;
-        text-align: left;
-    }
-    #wpm h4,
-    #accuracy h4 {
-        font-size: 15px;
-        text-align: center;
-    }
-    #faq ol p,
-    #wpm p,
-    #accuracy p {
-        font-size: 10px; 
-        text-align: center;
-    }
-    #wpmFormula,
-    #accuracyFormula {
-        width: 100%;
-    }
-    .senClass {
-        font-size: 19px;
-    }
-    .borderStyle {
-        padding: 10px;
-    }
-    
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    h1 {
-        font-size: 40px;
-    }
-    h2 {
-        font-size: 24px;
-    }
-    #startBtn {
-        font-size: 15px;
-        padding: 9px;
-    }
-    #inputField {
-        height: 47px;
-        font-size: 20px;
-    }
-    #bottomHalf {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: left;
-    }
-    h3 {
-        font-size: 24px;
-    }
-    
-    .senClass {
-        font-size: 15px;    
-    }
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    h1 {
-        font-size: 50px;
-    }
-    h2 {
-        font-size: 25px;
-    }
-    #mainDiv {
-        font-size: 21px;
-        line-height: 50px;
-    }
-    #startBtn {
-        font-size: 20px;
-        padding: 10px;
-    }
-    #inputField {
-        height: 50px;
-        font-size: 23px;
-    }
-    
-    #wpmFormula,
-    #accuracyFormula {
-        width: 80%;
-    }
-    h3 {
-        font-size: 25px;
-    }
+  h1 {
+    font-size: 45px;
+    font-family: "Arvo", serif;
+    font-style: italic;
+  }
+
+  #bottomHalf {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
+    height: inherit;
+  }
+  #bottomLeft,
+  #bottomRight {
+    width: 50vw;
+  }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
+/* Large devices (laptops/desktops, 992px and up) 
 @media only screen and (min-width: 992px) {
-    h1 {
-        font-size: 60px;
-    }
-    h2 {
-        font-size: 26px;
-    }
-    #mainBox {
-        padding: 30px;
-        }
-    #mainDiv {
-        font-size: 25px;
-        line-height: 55px;
-    }
-    #startBtn {
-        font-size: 21px;
-        padding: 13px;
-    }
-    #inputField {
-        height: 55px;
-        font-size: 24px;
-    }
-    #bottomHalf {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    h3 {
-        font-size: 29px;
-    }
-    #faq,
-    #howScoreWorks {
-        height: 620px;
-    }
 }
 
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+ Extra large devices (large laptops and desktops, 1200px and up) 
 @media only screen and (min-width: 1200px) {
-    h1 {
-        font-size: 70px;
-    }
-    h2 {
-        font-size: 27px;
-    }
-    #mainBox {
-        padding: 30px;
-    }
-    #mainDiv {
-        font-size: 30px;
-        line-height: 60px;
-    }
-    #startBtn {
-        font-size: 22px;
-        padding: 15px;
-    }
-    #inputField {
-        height: 60px;
-        font-size: 25px;
-    }
-    h3 {
-        font-size: 30px;
-    }
-    #faq,
-    #howScoreWorks {
-        height: 600px;
-    }
 }
+*/
