@@ -126,7 +126,7 @@
     color: #dcfffd;
   }
   .hide {
-    display: none;
+    display: hidden;
   }
   .show {
     display: block;
@@ -134,6 +134,9 @@
   .container {
     width: 95%;
     overflow: hidden;
+  }
+  .test {
+    background-color: pink;
   }
 }
 

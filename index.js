@@ -1,15 +1,13 @@
-let usedSentences = [];
+let randomSentence;
+let completedWords = []; // array
+let currentWord = "";
 let currentIndex = 0;
 let wordIndex = 0;
 let time = 60;
 let totalKeystrokes = 0;
+let wordsField = document.getElementById("wordsField");
 
-let userInfo = {
-  // game string
-  // game string in an array
-  // new string array to compare to the original
-  // length array that includes span elements
-};
+let userInfo = {};
 const sentences = [
   "how was dog mail cat ear drink home glass cake water car textbook baseboards lackhack whichever yellow stargaze snow day school park anteater blue television selling astonishing indoor reasonable embryo gasp background systematic functional final case behavior replacement resource needle marketing novel west structure fang redundant snail grouchy tendency badge legs bloody grubby imagine nappy sedate murmur lumpy good sleep fall existence knit connotesting melodic die request push kid sour disease houses drain dinosaurs mislead legrail violent flock minetray forgive drunk",
   "website pen paper agenda toy baby dinner music circle team interview influence ring cleaner fluffy charger planner cup mouse sticker tree nature edge fan mosquito soar prevalence state instinct snow utter spit preoccupation window key height invasion ostracize mean contradiction category hypothesis routine ghostwriter pat stress happen image fierce religion toe thin blush illustrious inhabit apparel amount event ooze recondite escape beneficial insect jewel thumbs way shut board splendid burn burly prove illumine pet womanly degree imply canvass",
@@ -44,7 +42,7 @@ function getKey(e) {
     }
   } else if (e.keyCode == 32) {
     addSpace(" ");
-    colorText(" ");
+    //colorText(" ");
   } else {
     if (userInfo.newStringArr == userInfo.gameString) {
       console.log("You have completed this round");
@@ -58,9 +56,11 @@ function addSpace(spaceKey) {
   if (spaceKey == userInfo.gameString[currentIndex]) {
     let val = document.getElementById("inputField").value.slice(0, -1);
     userInfo.lastWords.push(val);
+    userInfo.colorLastWords.push(userInfo.newStringArr);
+    //userInfo.newStringArr = "";
     document.getElementById("inputField").value = "";
     wordIndex++;
-    console.log("word index: " + wordIndex);
+    colorText(" ");
   }
 }
 
@@ -70,12 +70,46 @@ function colorText(key) {
   userInfo.lastKeys.push(key);
   userInfo.lenArr.push(coloredLetter.length);
   userInfo.newStringArr += coloredLetter;
+  currentWord += coloredLetter;
 
   currentIndex++;
+  if (key != " ") {
+    completedWords += currentWord;
+    insertNew(userInfo.newStringArr, userInfo.valArr);
+  } else {
+    insertNew(currentWord, userInfo.valArr, true);
+  }
+}
+function backspaceKey() {
+  let lastLen = userInfo.lenArr.pop();
+  let lastKey = userInfo.lastKeys.pop();
+  currentIndex = currentIndex - 1;
+  userInfo.valArr.unshift(userInfo.gameString[currentIndex]);
+  userInfo.newStringArr = userInfo.colorLastWords.pop();
+  //console.log(userInfo.newStringArr);
+  //userInfo.newStringArr = userInfo.newStringArr.slice(
+  //0,
+  //userInfo.newStringArr.length - lastLen
+  //);
 
+  if (lastKey == " ") {
+    let lastWord = userInfo.lastWords.pop();
+    document.getElementById("inputField").value = lastWord;
+  }
   insertNew(userInfo.newStringArr, userInfo.valArr);
 }
 
+function insertNew(newStringArr, valArr, space = false) {
+  if (space === true) {
+    console.log(wordIndex);
+    document.getElementById("wordsField").innerHTML = valArr.join("");
+    currentWord = "";
+    userInfo.newStringArr = "";
+  } else {
+    document.getElementById("wordsField").innerHTML =
+      currentWord + valArr.join("");
+  }
+}
 function isCorrect(key, currentLetter) {
   if (key == currentLetter) {
     return (
@@ -90,33 +124,6 @@ function isCorrect(key, currentLetter) {
       currentLetter +
       "</span>"
     );
-  }
-}
-
-function backspaceKey() {
-  let lastLen = userInfo.lenArr.pop();
-  let lastKey = userInfo.lastKeys.pop();
-  currentIndex = currentIndex - 1;
-  userInfo.valArr.unshift(userInfo.gameString[currentIndex]);
-
-  userInfo.newStringArr = userInfo.newStringArr.slice(
-    0,
-    userInfo.newStringArr.length - lastLen
-  );
-
-  if (lastKey == " ") {
-    let lastWord = userInfo.lastWords.pop();
-    document.getElementById("inputField").value = lastWord;
-  }
-  insertNew(userInfo.newStringArr, userInfo.valArr);
-}
-
-function insertNew(newStringArr, valArr) {
-  document.getElementById("wordsField").innerHTML =
-    newStringArr + valArr.join("");
-
-  if (userInfo.lastKeys.join("") == userInfo.gameString) {
-    alert("amazing!!");
   }
 }
 /*
@@ -190,22 +197,22 @@ function startNewRound() {
 */
 /* Below this is good */
 window.onload = function () {
-  let randomSentence = getSentence(
-    Math.floor(Math.random() * sentences.length)
-  );
-  document.getElementById("wordsField").innerText = randomSentence;
+  randomSentence = getSentence(Math.floor(Math.random() * sentences.length));
+  wordsField.innerHTML = randomSentence;
   userInfo.gameString = randomSentence;
   userInfo.valArr = randomSentence.split("");
   userInfo.eachWordArr = randomSentence.split(" ");
+  //userInfo.newStringArr = [];
   userInfo.newStringArr = "";
+  //userInfo.newStringLen = userInfo.newStringArr.length;
   userInfo.errors = 0;
   userInfo.lenArr = [];
   userInfo.lastKeys = [];
   userInfo.lastWords = [];
+  userInfo.colorLastWords = [];
 };
 function getSentence(randomIndex) {
   let randomSen = sentences[randomIndex];
-  usedSentences.push(sentences.splice(randomIndex, randomIndex + 1));
   return randomSen;
 }
 
