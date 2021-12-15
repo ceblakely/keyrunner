@@ -67,8 +67,7 @@ function addSpace(spaceKey) {
 function colorText(key) {
   let currentLetter = userInfo.valArr.shift();
   let coloredLetter = isCorrect(key, currentLetter);
-  userInfo.lastKeys.push(key);
-  userInfo.lenArr.push(coloredLetter.length);
+  userInfo.lastKeys.push(coloredLetter);
   userInfo.newStringArr += coloredLetter;
   currentWord += coloredLetter;
 
@@ -81,27 +80,49 @@ function colorText(key) {
   }
 }
 function backspaceKey() {
-  let lastLen = userInfo.lenArr.pop();
-  let lastKey = userInfo.lastKeys.pop();
-  currentIndex = currentIndex - 1;
-  userInfo.valArr.unshift(userInfo.gameString[currentIndex]);
-  userInfo.newStringArr = userInfo.colorLastWords.pop();
-  //console.log(userInfo.newStringArr);
-  //userInfo.newStringArr = userInfo.newStringArr.slice(
-  //0,
-  //userInfo.newStringArr.length - lastLen
-  //);
+  if (
+    userInfo.lastKeys.pop() ==
+    '<span style="background-color: #1b998b" class="newLetter"> </span>'
+  ) {
+    let lastWord = userInfo.lastWords.pop();
+    currentIndex = currentIndex - 2;
+    document.getElementById("inputField").value = lastWord;
+    document.getElementById("wordsField").innerHTML =
+      lastWord + userInfo.valArr.join("");
+    userInfo.valArr.unshift(userInfo.gameString[currentIndex]);
+  } else {
+    let backspacedKey = userInfo.lastKeys.pop();
+    backspacedKey.remove("span");
+    userInfo.valArr.unshift(backspacedKey);
+    currentIndex -= currentIndex;
+    document.getElementById("wordsField").innerHTML = userInfo.valArr.join("");
+  }
+  //let lastKey = userInfo.lastKeys.pop();
+  //console.log(lastKey);
+  //currentIndex = currentIndex - 1;
 
+  //userInfo.newStringArr = userInfo.colorLastWords.pop();
+
+  //userInfo.newStringArr = userInfo.newStringArr.slice(
+  //-1
+  //userInfo.newStringArr.length - lastLen
+  /*
   if (lastKey == " ") {
     let lastWord = userInfo.lastWords.pop();
+    console.log(lastWord);
+    currentIndex = currentIndex - 2;
     document.getElementById("inputField").value = lastWord;
-  }
-  insertNew(userInfo.newStringArr, userInfo.valArr);
+  } else {
+    currentIndex -= currentIndex;
+    document.getElementById("wordsField").innerHTML =
+      currentWord + valArr.join("");
+  } */
+  //insertNew(userInfo.newStringArr, userInfo.valArr);
 }
 
 function insertNew(newStringArr, valArr, space = false) {
   if (space === true) {
-    console.log(wordIndex);
+    console.log("current index: " + currentIndex);
     document.getElementById("wordsField").innerHTML = valArr.join("");
     currentWord = "";
     userInfo.newStringArr = "";
@@ -202,11 +223,10 @@ window.onload = function () {
   userInfo.gameString = randomSentence;
   userInfo.valArr = randomSentence.split("");
   userInfo.eachWordArr = randomSentence.split(" ");
-  //userInfo.newStringArr = [];
   userInfo.newStringArr = "";
-  //userInfo.newStringLen = userInfo.newStringArr.length;
   userInfo.errors = 0;
-  userInfo.lenArr = [];
+  //userInfo.lenArr = [];
+  userInfo.lengthVal = 66;
   userInfo.lastKeys = [];
   userInfo.lastWords = [];
   userInfo.colorLastWords = [];
