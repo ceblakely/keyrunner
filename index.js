@@ -9,10 +9,10 @@ let wordsField = document.getElementById("wordsField");
 
 let userInfo = {};
 const sentences = [
-  "how was dog mail cat ear drink home glass cake water car textbook baseboards lackhack whichever yellow stargaze snow day school park anteater blue television selling astonishing indoor reasonable embryo gasp background systematic functional final case behavior replacement resource needle marketing novel west structure fang redundant snail grouchy tendency badge legs bloody grubby imagine nappy sedate murmur lumpy good sleep fall existence knit connotesting melodic die request push kid sour disease houses drain dinosaurs mislead legrail violent flock minetray forgive drunk",
-  "website pen paper agenda toy baby dinner music circle team interview influence ring cleaner fluffy charger planner cup mouse sticker tree nature edge fan mosquito soar prevalence state instinct snow utter spit preoccupation window key height invasion ostracize mean contradiction category hypothesis routine ghostwriter pat stress happen image fierce religion toe thin blush illustrious inhabit apparel amount event ooze recondite escape beneficial insect jewel thumbs way shut board splendid burn burly prove illumine pet womanly degree imply canvass",
-  "shoe book ring plug garden draw mailbox mouse charge food assist author became flight editor eating doctor engine empire dollar winner tennis ticket window writer yellow concert color-blind watch sour positive sentence disposition common do overeat hell colon plagiarize knot wire orgy research credibility hunter appearance veteran steep fight mile shake list glance obsolete branch neat string groovy boiling thirsty violates link satiated i gestion amazing reply ring tree enchanted rend restrain chain kind hug attract detailed cease rude worship ant lumber daffy suffer combative numerous deadpan giants snails aunt appear",
-  "tree bird movie heel dog truck soccer game polish color share sports shopping travel money weather computer average inject meadow quote ruin dark lesson team problem crude body concert contrast wool leap hypnotize creature survive help horses mouth fancy breathe stop typical wet zoom gabby blowhuge perfect suggestions alty successful help less married consign wary applegarden blow lively chance cheap sour legal taste part suggest allow outrageous compel giant crabby game word respect race stage modify jittery wave few secretary disillusioned perpetual verify press watch join consult bat feeble curly joyous  cry milky lavish colossal apathetic migrate fish",
+  "christinablakely how was dog mail cat ear drink home glass cake water car textbook baseboards lackhack whichever yellow stargaze snow day school park anteater blue television selling astonishing indoor reasonable embryo gasp background systematic functional final case behavior replacement resource needle marketing novel west structure fang redundant snail grouchy tendency badge legs bloody grubby imagine nappy sedate murmur lumpy good sleep fall existence knit connotesting melodic die request push kid sour disease houses drain dinosaurs mislead legrail violent flock minetray forgive drunk",
+  "christinablakely website pen paper agenda toy baby dinner music circle team interview influence ring cleaner fluffy charger planner cup mouse sticker tree nature edge fan mosquito soar prevalence state instinct snow utter spit preoccupation window key height invasion ostracize mean contradiction category hypothesis routine ghostwriter pat stress happen image fierce religion toe thin blush illustrious inhabit apparel amount event ooze recondite escape beneficial insect jewel thumbs way shut board splendid burn burly prove illumine pet womanly degree imply canvass",
+  "christinablakely shoe book ring plug garden draw mailbox mouse charge food assist author became flight editor eating doctor engine empire dollar winner tennis ticket window writer yellow concert color-blind watch sour positive sentence disposition common do overeat hell colon plagiarize knot wire orgy research credibility hunter appearance veteran steep fight mile shake list glance obsolete branch neat string groovy boiling thirsty violates link satiated i gestion amazing reply ring tree enchanted rend restrain chain kind hug attract detailed cease rude worship ant lumber daffy suffer combative numerous deadpan giants snails aunt appear",
+  "christinablakely tree bird movie heel dog truck soccer game polish color share sports shopping travel money weather computer average inject meadow quote ruin dark lesson team problem crude body concert contrast wool leap hypnotize creature survive help horses mouth fancy breathe stop typical wet zoom gabby blowhuge perfect suggestions alty successful help less married consign wary applegarden blow lively chance cheap sour legal taste part suggest allow outrageous compel giant crabby game word respect race stage modify jittery wave few secretary disillusioned perpetual verify press watch join consult bat feeble curly joyous  cry milky lavish colossal apathetic migrate fish",
 ];
 
 function getKey(e) {
@@ -81,21 +81,28 @@ function colorText(key) {
 }
 function backspaceKey() {
   if (
-    userInfo.lastKeys.pop() ==
+    userInfo.lastKeys.at(-1) ==
     '<span style="background-color: #1b998b" class="newLetter"> </span>'
   ) {
-    let lastWord = userInfo.lastWords.pop();
+    //let lastWord = userInfo.lastWords.pop();
+    let lastWord = userInfo.colorLastWords.pop(-2);
     currentIndex = currentIndex - 2;
-    document.getElementById("inputField").value = lastWord;
+    document.getElementById("inputField").value = userInfo.lastWords.pop();
     document.getElementById("wordsField").innerHTML =
-      lastWord + userInfo.valArr.join("");
+      lastWord + " " + userInfo.valArr.join("");
     userInfo.valArr.unshift(userInfo.gameString[currentIndex]);
   } else {
-    let backspacedKey = userInfo.lastKeys.pop();
-    backspacedKey.remove("span");
-    userInfo.valArr.unshift(backspacedKey);
-    currentIndex -= currentIndex;
-    document.getElementById("wordsField").innerHTML = userInfo.valArr.join("");
+    currentWord = currentWord.slice(0, currentWord.length - 66);
+    userInfo.newStringArr = userInfo.newStringArr.slice(
+      0,
+      userInfo.newStringArr.length - 66
+    );
+    currentIndex = currentIndex - 1;
+    userInfo.valArr.unshift(userInfo.gameString.at(currentIndex));
+    //console.log(userInfo.valArr);
+    document.getElementById("wordsField").innerHTML =
+      userInfo.newStringArr + userInfo.valArr.join("");
+    userInfo.lastKeys.pop(-1);
   }
   //let lastKey = userInfo.lastKeys.pop();
   //console.log(lastKey);
