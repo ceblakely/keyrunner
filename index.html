@@ -2,6 +2,9 @@
 <head>
     <link rel='stylesheet' href='styles.css'>
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,36 +16,33 @@
     
     <div id='intro'>
         <nav>
-            <h1><a href='index.html'>KeyboardRunner</a></h1>
-        </nav>
-            <p id='test'></p>
-        <div id='mainBox'>
-            <h3 id='instructions'>Start Typing to Start the Clock</h3>
-            <p id='wordsField'></p>       
-            <input id='inputField' autocomplete='off'>
+            <h1><a href='index.html'><span style="color: #008F6B">KEY/</span><span style="color: #A44A3F">RUNNER</span></a></h1>
             <h2 id='countdownClock'>1:00</h2>
+        </nav>
+           
+        <div id='mainBox'>
+            <h3 id='instructions'>How fast can you race across the keyboard? Start typing to test your speed!</h3>
+            <p id='wordsField'></p><hr> 
+            <input id='inputField' autocomplete='off' placeholder='Type to start the clock...'>
+            <button id='playAgain' class='hide'><a href='index.html'>Play Again?</a></button>
+            
         </div>
     </div>
 
     <div id='bottomHalf'>
         <div id='bottomLeft'>
-            <h3>How You're Scored</h3>
-                <div id='wpm'>
-                    <h4>Words per Minute (WPM)</h4>
-                    <!-- <img src='images/gross-wpm.png' id='wpmFormula'/>-->
-                    <p>To calculate this metric, we take all the typed characters and divide them by 5. </p>
-                    <!-- <p>Gross WPM calculates how fast you can type without counting in errors. I chose to utilize Gross WPM because you cannot go to the next round if you have any errors in your sentence.</p> -->
-                </div>
-                <div id='accuracy'>
-                    <h4>Accuracy</h4>
-                    <!-- <img src='images/accuracy.png' id='accuracyFormula'> -->
-                    <p>This metric determines how accurate all of your keystrokes are. To do this, we divide the number of correctly typed keys by the total number of characters and multiply by 100.</p>
-                </div>   
-            <!-- <img src='https://images.pexels.com/photos/265631/pexels-photo-265631.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'> -->
+            <h3><span style="color: #008F6B">HOW YOU'RE SCORED</span></h3>
+              
+                    <ul>
+                        <li>Words per Minute (WPM)</li>
+                        <p>To calculate this metric, we take all the typed characters and divide them by 5. </p>
+                        <li>ACCURACY</li>
+                        <p>This metric determines how accurate all of your keystrokes are. To do this, we divide the number of correctly typed keys by the total number of characters and multiply by 100.</p>
+                    </ul>       
         </div>
         <div id='bottomRight'>
             <div id='faq'>
-                    <h3>FAQ</h3>
+                    <h3><span style="color: #A44A3F">FAQ</span></h3>
                     <ol>
                         <li>How do I improve my score?</li>
                         <p>Practice makes perfect. ;)</p>

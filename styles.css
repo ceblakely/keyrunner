@@ -57,20 +57,32 @@
     border-radius: 10px;
     box-shadow: 5px 5px 20px grey;
   }
+  #wordsField h2,
+  #wordsField p {
+    margin: 0;
+  }
   p {
     font-family: "PT Serif", serif;
     font-size: 30px;
     line-height: 42px;
     overflow: hidden;
   }
-  #inputField {
+  #inputField,
+  #playAgain {
     font-size: 25px;
     width: inherit;
     text-align: center;
     border: 1px solid black;
     padding: 10px;
   }
-
+  #playAgain {
+    font-size: 25px;
+    text-align: center;
+  }
+  #playAgain a {
+    color: black;
+    text-decoration: none;
+  }
   #bottomHalf {
     display: flex;
     flex-direction: column;
@@ -139,7 +151,7 @@
     color: #dcfffd;
   }
   .hide {
-    display: hidden;
+    display: none;
   }
   .show {
     display: block;
