@@ -1,9 +1,9 @@
 let randomSentence;
-let completedWords = []; // array
+let completedWords = [];
 let currentWord = "";
 let currentIndex = 0;
 let wordIndex = 0;
-let time = 10;
+let time = 60;
 let totalKeystrokes = 0;
 let wordsField = document.getElementById("wordsField");
 
@@ -57,7 +57,6 @@ function addSpace(spaceKey) {
     let val = document.getElementById("inputField").value.slice(0, -1);
     userInfo.lastWords.push(val);
     userInfo.colorLastWords.push(userInfo.newStringArr);
-    //userInfo.newStringArr = "";
     document.getElementById("inputField").value = "";
     wordIndex++;
     colorText(" ");
@@ -168,7 +167,6 @@ function calcScore() {
     "</p>";
 }
 
-/* Below this is good */
 window.onload = function () {
   randomSentence = getSentence(Math.floor(Math.random() * sentences.length));
   wordsField.innerHTML = randomSentence;
